@@ -630,3 +630,168 @@ section {
     padding-right: max(40px, calc((100vw - 860px) / 2));
   }
 }
+/* ══════════════════════════════════════
+   ENVELOPE OVERLAY
+══════════════════════════════════════ */
+#envelopeOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .8s ease, visibility .8s ease;
+}
+#envelopeOverlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.env-blur-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(60, 5, 28, 0.72);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+}
+
+/* ── scene: envelope + meta stacked ── */
+.env-scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: envFloat 3.5s ease-in-out infinite;
+}
+
+.env-above-label {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+  color: #ffb3c6;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+  text-shadow: 0 0 14px rgba(255,143,171,0.5);
+}
+
+/* ── the SVG envelope card ── */
+.env-wrapper {
+  position: relative;
+  width: clamp(220px, 55vw, 340px);   /* SMALL */
+  filter:
+    drop-shadow(0 6px 24px rgba(192,21,42,0.5))
+    drop-shadow(0 0 48px rgba(255,143,171,0.35));
+}
+
+.env-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+/* flap hover lift */
+.env-flap {
+  transform-origin: 170px 0px;
+  transition: transform 0.6s ease;
+}
+.env-wrapper:hover .env-flap {
+  transform: rotateX(-35deg);
+}
+
+/* ── wax seal sits on the fold seam ── */
+.env-seal {
+  position: absolute;
+  left: 50%;
+  /* sits right on the fold line ~47.5% down the SVG height */
+  top: 47%;
+  transform: translate(-50%, -50%);
+  width: clamp(30px, 8vw, 38px);
+  height: clamp(30px, 8vw, 38px);
+  background: radial-gradient(circle at 38% 38%, #ff6eb0, #c0152a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.8rem, 2.2vw, 1rem);
+  box-shadow:
+    0 2px 10px rgba(192,21,42,0.7),
+    0 0 0 2px rgba(255,200,210,0.4);
+  animation: sealPulse 2.2s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* ── meta below envelope ── */
+.env-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.env-from {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+  color: #ffb3c6;
+  opacity: 0.75;
+  letter-spacing: 0.12em;
+}
+
+.env-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 2.2vw, 1rem);
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: linear-gradient(135deg, #ff4d94, #e8537a);
+  border: none;
+  border-radius: 50px;
+  padding: clamp(10px, 2.5vw, 14px) clamp(24px, 6vw, 36px);
+  cursor: pointer;
+  box-shadow: 0 6px 28px rgba(255,80,150,0.5);
+  transition: transform 0.25s, box-shadow 0.25s;
+  animation: btnPulse 2s ease-in-out infinite;
+}
+.env-open-btn:hover, .env-open-btn:active {
+  transform: scale(1.07);
+  box-shadow: 0 12px 40px rgba(255,80,150,0.75);
+}
+.env-btn-icon { font-size: 1.1em; }
+
+.env-hint {
+  font-size: clamp(0.55rem, 1.6vw, 0.65rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffb3c6;
+  opacity: 0.45;
+}
+
+/* ── keyframes ── */
+@keyframes envFloat {
+  0%, 100% { transform: translateY(0)     rotate(-0.8deg); }
+  50%       { transform: translateY(-12px) rotate(0.8deg);  }
+}
+@keyframes sealPulse {
+  0%, 100% { box-shadow: 0 2px 10px rgba(192,21,42,0.7), 0 0 0 2px rgba(255,200,210,0.4); }
+  50%       { box-shadow: 0 2px 18px rgba(232,83,122,0.9), 0 0 0 3px rgba(255,200,210,0.6); }
+}
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 6px 28px rgba(255,80,150,0.5); }
+  50%       { box-shadow: 0 6px 42px rgba(255,80,150,0.85); }
+}
+
+/* ══════════════════════════════════════
+   FLOATING HEARTS CANVAS
+══════════════════════════════════════ */
+#heartsCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}

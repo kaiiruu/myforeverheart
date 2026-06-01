@@ -1,4 +1,99 @@
 /* ════════════════════════
+   ENVELOPE OPEN
+════════════════════════ */
+function openEnvelope() {
+  const overlay = document.getElementById('envelopeOverlay');
+  overlay.classList.add('hidden');
+
+  // Play music
+  const music = document.getElementById('bgMusic');
+  if (music) {
+    music.volume = 0.5;
+    music.play().catch(() => {});
+  }
+
+  // Start floating hearts
+  startFloatingHearts();
+}
+
+/* ════════════════════════
+   FLOATING HEARTS
+════════════════════════ */
+const hCanvas = document.getElementById('heartsCanvas');
+const hCtx    = hCanvas.getContext('2d');
+let HW, HH, floatingHearts = [];
+let heartsActive = false;
+
+function resizeHearts() {
+  HW = hCanvas.width  = window.innerWidth;
+  HH = hCanvas.height = window.innerHeight;
+}
+resizeHearts();
+window.addEventListener('resize', resizeHearts);
+
+const heartEmojis = ['💕','💖','💗','💓','💝','🌸','✨','💫','❤️','💞'];
+
+function spawnHeart() {
+  floatingHearts.push({
+    x:     Math.random() * HW,
+    y:     HH + 30,
+    size:  0.6 + Math.random() * 1.4,    // em scale
+    speed: 0.4 + Math.random() * 0.7,
+    drift: (Math.random() - 0.5) * 0.8,
+    alpha: 0.55 + Math.random() * 0.45,
+    emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
+    wobble: Math.random() * Math.PI * 2,
+    wobbleSpeed: 0.015 + Math.random() * 0.02,
+  });
+}
+
+function drawFloatingHearts() {
+  if (!heartsActive) return;
+  hCtx.clearRect(0, 0, HW, HH);
+
+  // Randomly spawn new hearts
+  if (Math.random() < 0.09) spawnHeart();
+
+  floatingHearts = floatingHearts.filter(h => h.y > -40 && h.alpha > 0.02);
+
+  floatingHearts.forEach(h => {
+    h.y     -= h.speed;
+    h.x     += h.drift + Math.sin(h.wobble) * 0.5;
+    h.wobble += h.wobbleSpeed;
+    h.alpha  -= 0.0012;
+
+    hCtx.save();
+    hCtx.globalAlpha = Math.max(h.alpha, 0);
+    hCtx.font = `${h.size * 22}px serif`;
+    hCtx.textAlign = 'center';
+    hCtx.fillText(h.emoji, h.x, h.y);
+    hCtx.restore();
+  });
+
+  requestAnimationFrame(drawFloatingHearts);
+}
+
+function startFloatingHearts() {
+  heartsActive = true;
+  // Pre-seed a few hearts
+  for (let i = 0; i < 12; i++) {
+    const h = {
+      x:     Math.random() * HW,
+      y:     Math.random() * HH,
+      size:  0.6 + Math.random() * 1.4,
+      speed: 0.4 + Math.random() * 0.7,
+      drift: (Math.random() - 0.5) * 0.8,
+      alpha: 0.55 + Math.random() * 0.35,
+      emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
+      wobble: Math.random() * Math.PI * 2,
+      wobbleSpeed: 0.015 + Math.random() * 0.02,
+    };
+    floatingHearts.push(h);
+  }
+  drawFloatingHearts();
+}
+
+/* ════════════════════════
    STARFIELD CANVAS
 ════════════════════════ */
 const canvas = document.getElementById('starfield');
