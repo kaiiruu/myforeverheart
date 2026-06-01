@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Heart 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@300;400;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="orb orb-left"></div>
+  <div class="orb orb-right"></div>
+  <div class="orb orb-bottom"></div>
+
+  <p class="hero-eyebrow">An Appreciation Message from Across the Distance</p>
+
+  <div class="stars-connected">
+    <div class="star-dot red" style="position:relative">
+      <span class="star-label lbl-left">Kyle</span>
+    </div>
+    <div class="star-line"></div>
+    <div class="star-dot pink" style="position:relative">
+      <span class="star-label lbl-right">Heart</span>
+    </div>
+  </div>
+
+  <h1 class="hero-title">Heart</h1>
+  <p class="hero-tagline">No distance is too far when two hearts are this close 💕</p>
+
+  <div class="scroll-cue">
+    <span>scroll</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ══ DISTANCE VISUAL ══ -->
+<section id="distance">
+  <div class="distance-wrap" id="distanceWrap">
+    <p class="section-label">✦ Far Yet Together ✦</p>
+    <h2 class="distance-title">Two stars shining<br/>in the same sky</h2>
+
+    <div class="cards-row">
+      <div class="person-card red-card">
+        <div class="icon">🌏</div>
+        <div class="pname">Kyle</div>
+        <div class="plabel">Always thinking of you</div>
+      </div>
+      <div class="connector">
+        <div class="conn-line"></div>
+        <div class="heart-icon">💕</div>
+        <div class="conn-line"></div>
+      </div>
+      <div class="person-card pink-card">
+        <div class="icon">🌸</div>
+        <div class="pname">Heart</div>
+        <div class="plabel">Always in his heart</div>
+      </div>
+    </div>
+
+    <p class="distance-quote">
+      "The distance is hard sometimes,<br/>
+      but <span class="quote-highlight">loving you</span> is easy every single day."
+    </p>
+  </div>
+</section>
+
+<!-- ══ LETTER ══ -->
+<section id="letter">
+  <div class="envelope-top"></div>
+  <div class="letter-card" id="letterCard">
+    <div class="wax-seal">💌</div>
+    <div class="letter-date">June 01, 2026 — Appreciation for my lover</div>
+
+    <p class="letter-to">My love, Heart —</p>
+
+    <div class="letter-body">
+      <p>
+        I just want to take a moment to tell you how much I appreciate you and everything you do for us.
+      </p>
+      <p>
+        Thank you for your love, patience, and understanding, especially during the times when the distance between us feels difficult. Even though we are far apart,
+        you always find a way to make me feel <span class="highlight">loved, supported, and cared for.</span>
+        Your presence in my life brings me <span class="highlight">comfort, happiness, and strength every single day.</span>
+      </p>
+      <p>
+        I appreciate the trust we share, the effort you put into our relationship, and the way you continue to choose us despite the challenges we face.
+        Thank you for being <span class="highlight">my safe place, my best friend, and the person who always believes in me.</span>
+      </p>
+      <p>
+        I am grateful for <span class="highlight">every message, every call, every laugh, and every memory we've created together.</span>
+        You made my life brighter in more ways than you know, and I feel incredibly <span class="highlight">blessed to have you by my side.</span>
+      </p>
+      <p>
+        No matter how many miles separate us, <span class="highlight">my love and appreciation for you only continue to grow.</span>
+        I look forward to the day when we no longer have to miss each other from afar and can finally create even more beautiful memories together.</p>
+      <p>
+        I love you more than words can say.
+        <span class="highlight">Always and forever. My Heart.</span>
+      </p>
+    </div>
+
+    <div class="letter-divider">
+      <span class="letter-divider-icon">✦ ✦ ✦</span>
+    </div>
+
+    <div class="letter-close">All my love, always —</div>
+    <div class="letter-sig">Kyle 💕</div>
+  </div>
+</section>
+
+<!-- ══ ASK ══ -->
+<section id="ask">
+  <div class="ask-glow"></div>
+
+  <div id="askContent">
+    <h2 class="ask-title" id="askTitle">
+      Will you be my<br/><span class="ask-name">Lover, Heart?</span>
+    </h2>
+    <p class="ask-sub" id="askSub">Even from far away, my heart is all yours 💕</p>
+
+    <div class="moon-deco">🌺</div>
+
+    <div class="btn-group" id="btnGroup">
+      <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">Yes, always! 💕</button>
+      <button class="btn btn-no" id="noBtn" onclick="runAway(this)">No</button>
+    </div>
+  </div>
+
+  <div id="success">
+    <div class="success-moon">🌺✨</div>
+    <div class="success-title">She said YES! 💖</div>
+    <p class="success-msg">
+      Distance means nothing when someone means everything.<br/>
+      Counting down the days until we're together, Baby ko, Heart. 💕
+    </p>
+    <div class="success-sig">— Kyle loves you, always 💕</div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
